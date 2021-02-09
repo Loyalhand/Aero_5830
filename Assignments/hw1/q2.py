@@ -4,7 +4,7 @@ def f(x):
     return np.cosh(x)*np.cos(x)+1
 
 # define tol, guess a_0 and a_1
-# a_0 != 0 
+# a_0 != 0, because of stopping criteria
 tol = .001
 a_0 = 3.8
 a_1 = 5
