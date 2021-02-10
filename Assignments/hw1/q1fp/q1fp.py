@@ -1,15 +1,15 @@
 import numpy as nu
 
+def f(x):
+    f = 2*nu.sin(x**2)-3*nu.sin(x**2)+x**2*nu.sin(x**2)
+    return f
+
 a = 3.2
 b = 3.8
 tol = .00000001
 cl = [a, b]
-fl = []
+fl = [f(a), f(b)]
 eps = []
-
-def f(x):
-    f = 2*nu.sin(x**2)-3*nu.sin(x**2)+x**2*nu.sin(x**2)
-    return f
 
 i = 0
 while abs(cl[i+1] - cl[i])/abs(cl[i]) >= tol:
@@ -23,7 +23,7 @@ while abs(cl[i+1] - cl[i])/abs(cl[i]) >= tol:
     fl.append(f(c))
     i += 1
 
-
+eps.append(abs(cl[i+1] - cl[i])/abs(cl[i]))
 
 i=0
 data_fl = open("fl.txt", "a")

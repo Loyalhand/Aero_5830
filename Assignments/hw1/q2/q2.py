@@ -6,12 +6,12 @@ def f(x):
 # define tol, guess a_0 and a_1
 # a_0 != 0, because of stopping criteria
 tol = 10**-6
-a_0 = 3
-a_1 = 4.8
+a_0 = 7
+a_1 = 8
 
 # declare lists
 al = [a_0, a_1]
-fl = []
+fl = [f(a_0), f(a_1)]
 dal = []
 
 # secant method
@@ -26,8 +26,6 @@ while (abs(al[n+1]-al[n])/abs(al[n])) > tol:
 # defines dal list 
 for k in range(len(al)-1):
     dal.append(al[k+1]-al[k])
-
-
 
 i=0
 data_fl = open("fl.txt", "a")
