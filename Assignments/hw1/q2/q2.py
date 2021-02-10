@@ -5,9 +5,9 @@ def f(x):
 
 # define tol, guess a_0 and a_1
 # a_0 != 0, because of stopping criteria
-tol = .001
-a_0 = 3.8
-a_1 = 5
+tol = 10**-6
+a_0 = 3
+a_1 = 4.8
 
 # declare lists
 al = [a_0, a_1]
@@ -26,6 +26,24 @@ while (abs(al[n+1]-al[n])/abs(al[n])) > tol:
 # defines dal list 
 for k in range(len(al)-1):
     dal.append(al[k+1]-al[k])
+
+
+
+i=0
+data_fl = open("fl.txt", "a")
+data_al = open("al.txt", "a")
+for i in range(len(al)):
+    data_al.write(str(al[i]) + "\n")
+    data_fl.write(str(fl[i]) + "\n")
+data_al.close()
+data_fl.close()
+
+i = 0 
+data_dal = open("dal.txt", "a")
+for i in range(len(dal)):
+    data_dal.write(str(dal[i]) + "\n")
+data_dal.close()
+
 
 print("a = " + str(a_np1))
 print("total iterations = " + str(n))

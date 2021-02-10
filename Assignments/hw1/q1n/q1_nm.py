@@ -4,15 +4,16 @@
 # hw 1
 # question 1 
 # newtons method 
+# q1_nm
 
 # create variable
 import sympy as sym 
 x = sym.Symbol('x')
 
 # define function, initial guess, and tol 
-f = x**2-4
-t_0 = 1
-tol = .0001
+f = 2*sym.sin(x**2)-3*sym.sin(x**2)+x**2*sym.sin(x**2)
+t_0 = 2.2
+tol = 10**-8
 
 # lambdify funtion and its derivative
 fp = sym.diff(f)
@@ -37,7 +38,21 @@ for j in range(len(tl)):
     fl.append(f(tl[j]))
 for k in range(len(tl)-1):
     dtl.append(tl[k+1]-tl[k])
- 
+
+data_fl = open("fl.txt", "a")
+data_tl = open("tl.txt", "a")
+for i in range(len(tl)):
+    data_tl.write(str(tl[i]) + "\n")
+    data_fl.write(str(fl[i]) + "\n")
+data_tl.close()
+data_fl.close()
+
+i = 0   
+data_dtl = open("dtl.txt", "a")
+for i in range(len(dtl)):
+    data_dtl.write(str(dtl[i]) + "\n")
+data_dtl.close()
+
 print("t = " + str(t_np1))
 print("total iterations = " + str(n))
 print("final delta t = " + str(dtl[n-1]))
