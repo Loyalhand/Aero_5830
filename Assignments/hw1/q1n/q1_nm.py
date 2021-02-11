@@ -4,7 +4,7 @@
 # hw 1
 # question 1 
 # newtons method 
-# q1_nm
+# q1_nm.py
 
 # create variable
 import sympy as sym 

@@ -1,3 +1,11 @@
+# Matthew Pahayo
+# 2/11/2021
+# computational methods
+# hw 1
+# question 1 
+# false position
+# q1_fp.py
+
 import numpy as nu
 
 def f(x):

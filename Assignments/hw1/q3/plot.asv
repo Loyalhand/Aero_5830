@@ -1,0 +1,18 @@
+% 2/11/2020
+% Matthew Pahayo
+% hw 1 
+% % q3 plot
+% file Name: plot.m
+
+clc
+clear all
+close all
+
+f_m = importdata("flm.txt");
+f = importdata("fl.txt");
+
+g_m = f_m/f_m(1);
+g = f/f(1); 
+
+hold on 
+plot(g,(0:length(g)))

@@ -1,3 +1,11 @@
+# Matthew Pahayo
+# 2/11/2021
+# computational methods
+# hw 1
+# question 2 
+# secant method
+# q2.py
+
 import numpy as np
 
 def f(x):
