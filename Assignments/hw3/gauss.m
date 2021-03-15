@@ -1,7 +1,7 @@
 function [x] = gauss(a,b)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
-n = length(a)
+% gauss elimination
+
+n = length(a);
 
 k = 1 ;
 p = k ;
