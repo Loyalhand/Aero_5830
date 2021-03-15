@@ -54,8 +54,18 @@ end
 %=========================================================================%
                       % Newton-Raphson Method
 %=========================================================================%        
-function x = newRap(
-    
+function [b,A,q] = newRap(f,q,p)
+    syms x1 x2 x3 x4 
+    fp = jacobian(f,[x1 x2 x3 x4])
+    b = transpose(double(f(q(1),q(2),q(3),q(4))))
+    b_0 = b 
+%     while (norm(b)/norm(b_0))^(1/2) > 10^p
+        A = double(fp(q(1),q(2),q(3),q(4)))
+        b = transpose(double(f(q(1),q(2),q(3),q(4))))
+        del = gauss(A,-b)
+        q = q+del
+%     end
 end
+
     end
 end
