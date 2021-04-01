@@ -23,7 +23,7 @@ function [x,w] = gauSei(A,b,n,x,imax,es,lambda)
     end
     iter = 1;
     sen = 0;
-    L2norm_0 = norm(b-A*x)^(1/2);
+    L2norm_0 = norm(b-A*x);
     while sen == 0
         sen = 1;
         for i = 1:n
@@ -35,9 +35,9 @@ function [x,w] = gauSei(A,b,n,x,imax,es,lambda)
                 end
             end
             x(i) = lambda*sum + (1-lambda)*old;
-            L2norm = norm(b-A*x)^(1/2);
+            L2norm = norm(b-A*x);
             if sen == 1 && x(i) ~= 0
-                ea = abs(L2norm/L2norm_0);
+                ea = abs(L2norm/L2norm_0)/1;
                 if ea > es
                     sen = 0;
                 end
