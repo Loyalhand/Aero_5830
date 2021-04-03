@@ -47,11 +47,6 @@ classdef onedOpt
                 iter = iter + 1;
             end
         end
-        
-        
-        function Newton = Newton()
-            % Newton is the Newton Method for 1-d opt.
-        end
     end
 end
 

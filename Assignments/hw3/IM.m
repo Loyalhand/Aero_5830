@@ -60,9 +60,9 @@ function [q,t] = newRap(f,q,p,kmax)
     b = transpose(double(f(q(1),q(2),q(3),q(4))));
     b_0 = b ;
     k = 0;
-    while (norm(b)/norm(b_0))^(1/2) > 10^p && k<kmax
-        L2norm = (norm(b)/norm(b_0))^(1/2);
-        l = norm(b)^(1/2);
+    while (norm(b)/norm(b_0)) > 10^p && k<kmax
+        L2norm = (norm(b)/norm(b_0));
+        l = norm(b);
         A = double(fp(q(1),q(2),q(3),q(4)));
         b = transpose(double(f(q(1),q(2),q(3),q(4))));
         del = gauss(A,-b);

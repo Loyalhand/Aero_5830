@@ -23,9 +23,10 @@ iter = 10;
 %=========================================================================% 
 W = 3.7278*10^6; %[N]
 sigma = .31; 
-D = symfun(6.62725*sigma*V^2+1.31493*10^-4/sigma*(W/V)^2,V)
+D = symfun(-(6.62725*sigma*V^2+1.31493*10^-4/sigma*(W/V)^2),V)
 Vlow = 100;
-Vhigh = 250;
+Vhigh = 400;
 es = 10^-3;
 [Vlow,V2,V1,Vhigh] = onedOpt.Gold(Vlow,Vhigh,0,es,D);
 [V,D] = cubicFit(Vlow,V2,V1,Vhigh,D);
+
