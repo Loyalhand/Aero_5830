@@ -40,3 +40,8 @@ x1^2+x2^2+x3^2-1],[x1,x2,x3,x4]);
 q = transpose([3,3,3,3]);
 [q,k] = IM.newRap(f,q,p,kmax)
 
+
+% fun = @root2d
+% x0 = [1,1,1,1];
+% x = fsolve(fun,x0)
+% 
