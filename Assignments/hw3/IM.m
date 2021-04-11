@@ -54,7 +54,11 @@ end
 %=========================================================================%
                       % Newton-Raphson Method
 %=========================================================================%        
-function [q,k] = newRap(f,q,p,kmax)
+function [q,t] = newRap(f,q,p,kmax)
+    % f is the 'A' matrix
+    % q is the 'b' vector
+    % p is the precision goal
+    % kmax is the maximum allowable iterations
     syms x1 x2 x3 x4 
     fp = jacobian(f,[x1 x2 x3 x4]);
     b = transpose(double(f(q(1),q(2),q(3),q(4))));
