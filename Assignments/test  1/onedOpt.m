@@ -44,7 +44,7 @@ classdef onedOpt
                 else
                     fx = f2;
                 end
-                iter = iter + 1;
+                iter = iter + 1
             end
         end
     end
