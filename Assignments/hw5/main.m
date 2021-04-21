@@ -33,14 +33,10 @@ theta = 1;
 % title('Convergence history of the objective function')
 % grid on 
 % 
-% x0 = [1;1;1;1]
-% F = @(x1,x2,x3,x4) (4*x1-x2+x3-x1*x4)^2+ ...
-%     (-x1+3*x2-2*x3-x2*x4)^2 + (x1-2*x3+3*x3-x3*x4)^2 + ...
-%     (x1^2+x2^2+x3^2-1)^2
-% [Fq,q,iter,PE] = mOpt.BFGS(F,x0,theta,tol)
+x0 = [1;1;1;1]
+F = @(x1,x2,x3,x4) (4*x1-x2+x3-x1*x4)^2+ ...
+    (-x1+3*x2-2*x3-x2*x4)^2 + (x1-2*x2+3*x3-x3*x4)^2 + ...
+    (x1^2+x2^2+x3^2-1)^2
+[Fq,q,iter,PE] = mOpt.BFGS(F,x0,theta,tol)
 % [Fq,q,iter,PE] = mOpt.Steep(F,x0,tol)
-options = optimoptions('fminunc','Algorithm','quasi-newton');
-fun = @(x) 1/30*(8*x(1)^2-x(1)*x(2)+.5*x(2)^2)+x(1)*exp(-x(1)^2-x(2)^2)
-q0 = [1;1]
-options.Display = 'iter';
-[x, fval, exitflag, output] = fminunc(fun,q0,options);
+

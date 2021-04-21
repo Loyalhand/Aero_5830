@@ -82,7 +82,7 @@ classdef mOpt
                 H = H + D;
                 search = double(-H*gradF(q1(i-1),q2(i-1),q4(i-1),q3(i-1))/norm(-H*gradF(q1(i-1),q2(i-1),q3(i-1),q4(i-1)))); 
                 fas(as) =  F(q1(i)+search(1)*as,q2(i)+search(2)*as,q3(i)+search(3)*as,q4(i)+search(4)*as);
-                [xlow,w2,w1,xhigh] = onedOpt.Gold(0,2,20,0,-fas);
+                [xlow,w2,w1,xhigh] = onedOpt.Gold(-2,2,20,0,-fas);
                 [alpha,y] = cubicFit(xlow,w2,w1,xhigh,-fas);
                 q = q + alpha(1)*search;
                 PE(i-1,1) = F(q1(i),q2(i),q3(i),q4(i));

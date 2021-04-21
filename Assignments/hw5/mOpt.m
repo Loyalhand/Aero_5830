@@ -18,6 +18,7 @@ classdef mOpt
             q4(2) = 10^99;
             gradF(x1,x2,x3,x4) = gradient(F,[x1,x2,x3,x4]);
             s = @(x1,x2,x3,x4) -gradF(x1,x2,x3,x4)/norm(gradF(x1,x2,x3,x4));
+            PE = zeros(200,1)
             while abs(F(q1(i),q2(i),q3(i),q4(i))-F(q1(i-1),q2(i-1),q3(i-1),q4(i-1)))>tol
                 if q1(2) == 10^99
                     q1(2) = q0(1);
@@ -28,11 +29,11 @@ classdef mOpt
                 search = double(s(q1(i),q2(i),q3(i),q4(i)));
                 fas(as) =  F(q1(i)+search(1)*as,q2(i)+search(2)*as,q3(i)+search(3)*as,q4(i)+search(4)*as);
                 if double(fas(0))>0
-                    fas(as)=-fas(as)
+                    fas(as)=-fas(as);
                 end
                 [xlow,w2,w1,xhigh] = onedOpt.Gold(0,2,20,0,fas);
                 [alpha,y] = cubicFit(xlow,w2,w1,xhigh,-fas);
-                q = q + alpha(1)*search
+                q = q + alpha(1)*search;
                 PE(i-1,1) = F(q1(i),q2(i),q3(i),q4(i));
                 q1(i+1) = q(1);
                 q2(i+1) = q(2);
@@ -83,7 +84,7 @@ classdef mOpt
                 H = H + D;
                 search = double(-H*gradF(q1(i-1),q2(i-1),q4(i-1),q3(i-1))/norm(-H*gradF(q1(i-1),q2(i-1),q3(i-1),q4(i-1)))); 
                 fas(as) =  F(q1(i)+search(1)*as,q2(i)+search(2)*as,q3(i)+search(3)*as,q4(i)+search(4)*as);
-                [xlow,w2,w1,xhigh] = onedOpt.Gold(0,2,20,0,-fas);
+                [xlow,w2,w1,xhigh] = onedOpt.Gold(-10,10,20,0,-fas);
                 [alpha,y] = cubicFit(xlow,w2,w1,xhigh,-fas);
                 q = q + alpha(1)*search
                 PE(i-1,1) = F(q1(i),q2(i),q3(i),q4(i));
