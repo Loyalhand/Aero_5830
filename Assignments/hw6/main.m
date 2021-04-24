@@ -1,18 +1,33 @@
 % main.m
+clc
+clear all
+close all
+format longg
+syms xx 
+interval = 2;
+x = transpose(0:2/interval:2);
+f = @(x) sin(exp(x)-2);
+y = f(x);
+n = interval;
+fapprox3(xx) = Lagran(x,y,n,xx);
 
-x = [1;4;6]
-y = [0;1.386294;1.79176]
-xx = 2
-n = 2
+interval = 5;
+x = transpose(0:2/interval:2);
+y = f(x);
+n = interval;
+fapprox6(xx) = Lagran(x,y,n,xx);
 
-sum = 0
-for i = 1:n+1
-    product = y(i,1) 
-    for j = 1:n+1
-        if i~=j
-            product = product*(xx-x(j,1))/(x(i,1)-x(j,1))
-        end
-    end
-    sum = sum + product
-end
-f = sum
+hold on
+fplot(f)
+fplot(fapprox3)
+fplot(fapprox6)
+xlim([ 0 2 ])
+ylim([-1 1])
+title('Langrange interpolation')
+xlabel('x')
+ylabel('f(x)')
+legend('actual','3rd degree','6th degree','Location','northwest')
+grid on 
+hold off
+
+f(0)-fapprox3(0)
