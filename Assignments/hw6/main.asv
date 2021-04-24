@@ -37,15 +37,21 @@ format longg
 % err = [x err3 err6];
 
 
-
+n = 11
 a = 0 
 b = 2 
 points = 11
 x = transpose(a:(b-a)/(points):b)
 f = @(x) sin(exp(x)-2)
-g = f(h)
-for i = 1:n+1
-    h(i,1) = 
-n = 11
-[A,b] = NCSpline.sysMake(g,n,h)
+g = f(x)
 
+
+[A,b] = NCSpline.sysMake(g,n,x)
+c = gauss(A,b)
+h = zeros(n,1);
+for i = 1:n
+    h(i,1) = x(i+1)-x(i);
+end
+k = zeros(n,1)
+for i = 1:n 
+    k = g(i+1)-g(i))/h(i)-h(i)/3*(2

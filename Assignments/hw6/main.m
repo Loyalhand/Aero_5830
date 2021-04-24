@@ -36,9 +36,9 @@ format longg
 % err6 = double(f(x)-fapprox6(x));
 % err = [x err3 err6];
 
+a = 0 
 
 n = 11
-a = 0 
 b = 2 
 points = 11
 x = transpose(a:(b-a)/(points):b)
@@ -46,5 +46,6 @@ f = @(x) sin(exp(x)-2)
 g = f(x)
 
 
-[A,b] = NCSpline.sysMake(g,n,x)
+[f] = NCSpline.sysMake(g,n,x)
+
 
