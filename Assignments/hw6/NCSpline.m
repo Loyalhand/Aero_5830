@@ -4,8 +4,13 @@ classdef NCSpline
     
     methods (Static)
         function [s] = sysMake(g,n,x)
-            %UNTITLED Construct an instance of this class
-            %   Detailed explanation goes here
+            %sysMake will Construct a system for NC spline
+            %   it will find the coefficents of each spline and will output
+            %   a column vector of the spline equations as syms
+            % g is the vector of known points, x is the vector coresponding
+            % to the points
+            % n is the number of intervals inbetween all points
+            syms p
             h = zeros(n,1);
             for i = 1:n-1
                 h(i,1) = x(i+1)-x(i);
@@ -33,9 +38,9 @@ classdef NCSpline
                 k(i,1) = (g(i+1)-g(i))/h(i)-h(i)/3*(2*c(i)+c(i+1));
                 d(i,1) = (c(i+1)-c(i))/3/h(i);
             end
-           
+            s = sym(zeros(n,1));
             for i = 1 :n
-                s.f{i,1} = @(p)g(i)+k(i)*(p-x(i))+c(i)*(p-x(i))^2+d(i)*(p-x(i))^3
+                s(i,1) = (g(i)+k(i)*(p-x(i))+c(i)*(p-x(i))^2+d(i)*(p-x(i))^3);
             end
         end
         
