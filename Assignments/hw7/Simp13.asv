@@ -1,0 +1,6 @@
+function I = Simp13(h,intervals,range)
+    % Simpson 1/3 integration
+    for i = 1:4
+    sum = range(i) + 4*range(i+1)+range(i++2)
+    I = h*sum/3;
+end
