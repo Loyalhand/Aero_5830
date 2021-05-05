@@ -1,3 +1,0 @@
-function fun = f(x)
-fun = log(x);
-end
