@@ -50,12 +50,12 @@ Iquad4 = gaussQuad(@f,0,pi,4);
 %=========================================================================
 
 syms y % start with x first
-[range,xpoints]=getRange2(@f2,0,.5,2);
-h = xpoints(2)-xpoints(1);
-g(y) = Simp13(@f2,h,2,range);
-[range,xpoints]=getRange(g,0,.5,2);
-h = xpoints(2)-xpoints(1);
+[range,xpoints]=getRange2(@f2,0,.5,2)
+h = xpoints(2)-xpoints(1)
+g(y) = Simp13(@f2,h,2,range)
+[range,xpoints]=getRange(g,0,.5,2)
+h = xpoints(2)-xpoints(1)
 Isimp = double(Simp13(g,h,2,range))
-g(y) = gaussQuad(@f2,0,.5,3);
+g(y) = gaussQuad(@f2,0,.5,3)
 Iquad = double(gaussQuad(g,0,.5,3))
 

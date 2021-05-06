@@ -1,4 +1,4 @@
-function I = Simp13(h,intervals,range)
+function I = Simp13(f,h,intervals,range)
     % Simpson 1/3 integration
     sum = 0;
     for i = 1:2:intervals

@@ -1,4 +1,4 @@
-function I = Trapz(h,intervals,range)
+function I = Trapz(f,h,intervals,range)
     % Trapezoidal integration
     sum = 0;
         for i = 1:intervals

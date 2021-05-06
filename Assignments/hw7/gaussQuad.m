@@ -1,4 +1,4 @@
-function I = gaussQuad(a,b,n)
+function I = gaussQuad(f,a,b,n)
 %myFun - Description
 %
 % Syntax: output = myFun(input)
