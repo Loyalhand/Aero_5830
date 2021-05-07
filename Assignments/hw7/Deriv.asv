@@ -1,0 +1,3 @@
+function Deriv(x,y)
+    dxdy = y - x^ 2 +1
+end

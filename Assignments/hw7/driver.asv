@@ -42,20 +42,62 @@ format longg
                                 %q2
 %=========================================================================
 
-Iquad3 = gaussQuad(@f,0,pi,3);
-Iquad4 = gaussQuad(@f,0,pi,4);
+% Iquad3 = gaussQuad(@f,0,pi,3);
+% Iquad4 = gaussQuad(@f,0,pi,4);
 
 %=========================================================================
                                 %q3
 %=========================================================================
+%  I = 0.0158434;
+% syms y % start with x first
+% [range,xpoints]=getRange2(@f2,0,.5,2);
+% h = xpoints(2)-xpoints(1);
+% g(y) = Simp13(@f2,h,2,range);
+% [range,xpoints]=getRange(g,0,.5,2);
+% h = xpoints(2)-xpoints(1);
+% Isimp = double(Simp13(g,h,2,range))
+% g(y) = gaussQuad(@f2,0,.5,3);
+% Iquad = double(gaussQuad(g,0,.5,3))
+% 
+% errSimp = abs(Isimp - I)
+% errQuad = abs(Iquad - I)
 
-syms y % start with x first
-[range,xpoints]=getRange2(@f2,0,.5,2)
-h = xpoints(2)-xpoints(1)
-g(y) = Simp13(@f2,h,2,range)
-[range,xpoints]=getRange(g,0,.5,2)
-h = xpoints(2)-xpoints(1)
-Isimp = double(Simp13(g,h,2,range))
-g(y) = gaussQuad(@f2,0,.5,3)
-Iquad = double(gaussQuad(g,0,.5,3))
+%=========================================================================
+                                %q4
+%=========================================================================
 
+% y = .5
+% xi = 0 
+% xf = 2
+% dx = (xf-xf)/10
+% xout = 2
+% 
+% x = xi
+% m = 0
+% xp(m+1,1) = x 
+% yp(m+1,1) = y 
+% while true 
+%     xend = x+xout
+%     if xend>xf
+%         xend = xf
+%     end
+%     h=dx
+%     Integrator(x,y,h,xend)
+%     m = m + 1
+%     xp(m+1,1) = x
+%     yp(m+1,1) = y
+%     if x>=xf
+%         break
+%     end
+% end
+
+xi = 0
+yi = 1
+
+h = 1
+
+x = xi
+y =yi 
+for 1:3
+    x = x + i*(h
+dydx = y 
