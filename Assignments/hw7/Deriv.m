@@ -1,3 +1,3 @@
 function dxdy = Deriv(x,y)
-    dxdy = y+0*x
+    dxdy = -y^2+0*x;
 end

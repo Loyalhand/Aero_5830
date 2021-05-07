@@ -91,13 +91,14 @@ format longg
 %     end
 % end
 
-xi = 0
-yi = 1
+[x,y] = Euler(0,1,.1,100);
 
-h = 1
-
-x = xi
-y =yi 
-for 1:3
-    x = x + i*(h
-dydx = y 
+wi = .916667
+h=.1
+x=0
+wp = 1
+syms y 
+f(y) = diff(-y^2)
+a = 1/h-2*wp
+b = Deriv(x,wp)
+b/a+1
