@@ -66,50 +66,21 @@ format longg
                                 %q4
 %=========================================================================
 
-% y = .5
-% xi = 0 
-% xf = 2
-% dx = (xf-xf)/10
-% xout = 2
-% 
-% x = xi
-% m = 0
-% xp(m+1,1) = x 
-% yp(m+1,1) = y 
-% while true 
-%     xend = x+xout
-%     if xend>xf
-%         xend = xf
-%     end
-%     h=dx
-%     Integrator(x,y,h,xend)
-%     m = m + 1
-%     xp(m+1,1) = x
-%     yp(m+1,1) = y
-%     if x>=xf
-%         break
-%     end
-% end
+syms w 
+f(w) = 1/5*w*exp(3*w
+xi = 0;
+yi = 1;
+h = .1;
+steps = 10;
+[xh,yh] = Heun(xi,yi,h,steps);
+[xe,ye] = Euler(xi,yi,h,steps);
+[xme,yme] = mEuler(f,xi,yi,h,steps);
+[xRK,yRK] = RK4(xi,yi,h,steps);
+[xmid,ymid] = midpoint(xi,yi,h,steps);
 
-[x,y] = Euler(0,1,.1,100);
+%=========================================================================
+                                %q4
+%=========================================================================
 
-% wi = 0
-% h=.1
-% x=0
-% syms y 
-% wp = 1
-% f(y) = diff(-y^2)
-% a = 1/h-f(wp)
-% b = Deriv(x,wp)
-% b/a+1
-
-syms w
-f(w) = -w^2
-xi = 0
-yi = 1
-h = .1
-steps = 100
-[x,y] = Heun(xi,yi,h,steps)
-[x,y] = Euler(xi,yi,h,steps)
-% [x,y] = mEuler(f,xi,yi,h,steps)
-[x,y] = RK4(xi,yi,h,steps)
+[x2,y2] = AB2(xi,yi,h,steps);
+[x3,y3] = AB3(xi,yi,h,steps)
