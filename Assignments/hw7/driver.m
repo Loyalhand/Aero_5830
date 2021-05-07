@@ -96,16 +96,19 @@ format longg
 % wi = 0
 % h=.1
 % x=0
-% wp = 1
 % syms y 
+% wp = 1
 % f(y) = diff(-y^2)
 % a = 1/h-f(wp)
 % b = Deriv(x,wp)
 % b/a+1
+
 syms w
 f(w) = -w^2
 xi = 0
 yi = 1
 h = .1
-steps = 10
-[x,y] = mEuler(f,xi,yi,h,steps)
+steps = 100
+[x,y] = Heun(xi,yi,h,steps)
+[x,y] = Euler(xi,yi,h,steps)
+% [x,y] = mEuler(f,xi,yi,h,steps)
