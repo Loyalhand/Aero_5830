@@ -67,7 +67,7 @@ err = spline;
 i = 0 ;
 j=1;
 while(true)
-    if i>=xstart && i<b/n
+    if i>=0 && i<b/n
         spline(j) = subs(f(1),p,i);
     end
     if i<2*b/n && i>=b/n

@@ -1,4 +1,4 @@
-function [range,xpoints] = getRange(f,xstart,xend,intervals)
+function [range,xpoints] = getRange(xstart,xend,intervals)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 xpoints = transpose(xstart:(xend-xstart)/(intervals):xend);

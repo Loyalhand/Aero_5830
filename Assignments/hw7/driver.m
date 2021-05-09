@@ -24,6 +24,7 @@ format longg
 %     i = i + 1;
 % end
 % 
+% 
 % errTrap = abs(I-Trap);
 % errSimp = abs(I-Simp);
 % 
@@ -77,10 +78,100 @@ steps = 11;
 [xme,yme] = mEuler(f,xi,yi,h,steps);
 [xRK,yRK] = RK4(xi,yi,h,steps);
 [xmid,ymid] = midpoint(xi,yi,h,steps);
+xlin = 0:.1:1
+exact = transpose(f(xlin))
 
+figure(1)
+hold on 
+fplot(f)
+plot(xh,yh)
+plot(xe,ye)
+plot(xme,yme)
+plot(xmid,ymid)
+ylim([yi 5])
+xlim([xi 1])
+legend('exact','Heun','Euler','modified Euler','midpoint')
+grid on 
+title('ODE approximations')
+xlabel('t')
+ylabel('f(t)')
+hold off
+
+figure(2)
+hold on 
+plot(xh,yh-exact)
+plot(xe,ye-exact)
+plot(xme,yme-exact)
+plot(xmid,ymid-exact)
+ylim([-1 1])
+xlim([0 1])
+legend('Heun','Euler','modified Euler','midpoint')
+grid on 
+title('ODE error')
+xlabel('t')
+ylabel('error')
+hold off
+
+figure(3)
+hold on 
+fplot(f)
+plot(xRK,yRK)
+ylim([yi 4])
+xlim([xi 1])
+legend('exact','RK4')
+grid on 
+title('ODE approximations')
+xlabel('t')
+ylabel('f(t)')
+hold off
+
+figure(4)
+hold on 
+plot(xRK,yRK-exact)
+legend('RK4')
+grid on 
+title('ODE error')
+xlabel('t')
+ylabel('error')
+hold off
 %=========================================================================
-                                %q4
+                                %q5
 %=========================================================================
+syms w 
+xi = 1;
+yi = 1;
+h = .1;
+steps = 11;
+xlin = 1:.1:2
 f(w) = w/(1+log(w))
 [x2,y2] = AB2(xi,yi,h,steps);
-[x3,y3] = AB3(xi,yi,h,steps)
+[x3,y3] = AB3(xi,yi,h,steps);
+
+exact = transpose(f(xlin))
+
+figure(1)
+hold on 
+fplot(f)
+plot(x2,y2)
+plot(x3,y3)
+ylim([yi 1.25])
+xlim([xi 2])
+legend('exact','AB2','AB3')
+grid on 
+title('AB approximations')
+xlabel('t')
+ylabel('f(t)')
+hold off
+
+figure(2)
+hold on 
+plot(x2,y2-exact)
+plot(x3,y3-exact)
+ylim([-.005 .005])
+xlim([xi 2])
+legend('AB2','AB3')
+grid on 
+title('AB error')
+xlabel('t')
+ylabel('error')
+hold off 
