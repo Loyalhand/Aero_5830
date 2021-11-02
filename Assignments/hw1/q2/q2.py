@@ -9,7 +9,7 @@
 import numpy as np
 
 def f(x):
-    return np.cosh(x)*np.cos(x)+1
+    return x*x-2*x
 
 # define tol, guess a_0 and a_1
 # a_0 != 0, because of stopping criteria
@@ -26,7 +26,7 @@ dal = []
 # evaluates function at a_n
 n = 0
 while (abs(al[n+1]-al[n])/abs(al[n])) > tol:
-    a_np1 = al[n+1] - f(al[n+1])/(f(al[n+1])-f(al[n]))*((al[n+1])-al[n])
+    a_np1 = al[n+1] - f(al[n+1])/( f(al[n+1])-f(al[n]))*((al[n+1])-al[n])
     al.append(a_np1)
     fl.append(f(al[n]))
     n += 1

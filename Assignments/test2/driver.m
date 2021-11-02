@@ -8,26 +8,26 @@ format longg
                                 %q1
 %=========================================================================                                
 
-% fun = @(x) x^2*sin(x)-2*x;
-% fp(1,1) = fwd_fprimeO3(fun,-3,.1);
-% fp(2,1) = fwd_fprimeO3(fun,-3,.01);
-% fp(3,1) = fwd_fprimeO3(fun,-3,.001);
-% h(1,1) = .1;
-% h(2,1) = .01;
-% h(3,1) = .001;
-% exact = -10.063212421;
-% err(1,1) = abs(exact-fp(1,1));
-% err(2,1) = abs(exact-fp(2,1));
-% err(3,1) = abs(exact-fp(3,1));
-% 
-% [h fp err]
+fun = @(x) x^2*sin(x)-2*x;
+fp(1,1) = fwd_fprimeO3(fun,-3,.1);
+fp(2,1) = fwd_fprimeO3(fun,-3,.01);
+fp(3,1) = fwd_fprimeO3(fun,-3,.001);
+h(1,1) = .1;
+h(2,1) = .01;
+h(3,1) = .001;
+exact = -10.063212421;
+err(1,1) = abs(exact-fp(1,1));
+err(2,1) = abs(exact-fp(2,1));
+err(3,1) = abs(exact-fp(3,1));
+
+[h fp err]
 
 %=========================================================================
                                 %q2
 %=========================================================================
 f = @(x) x.^2.*sin(x)-2.*x;
 syms p 
-xend = 3;
+xend = 4;
 xstart = -3;
 b = xend - xstart;
 exact = -10.063212421;
@@ -102,9 +102,15 @@ while(true)
     end
 end
 
+dom = transpose(xstart:.01:xend);
+exact = f(dom);
+errNC = abs(NC-exact);
+errClamp = abs(Clamp-exact);
+
+figure(1)
 hold on 
-plot(-3:.01:3,NC)
-plot(-3:.01:3,Clamp)
+plot(dom,NC)
+plot(dom,Clamp)
 fplot(f)
 xlim([-3 3])
 xlabel('x')
@@ -114,71 +120,92 @@ title('Spline Approximations')
 grid on 
 hold off
 
-%=========================================================================
+figure(2)
+hold on
+plot(dom,errNC)
+plot(dom,errClamp)
+xlim([-3 3])
+xlabel('x')
+ylabel('error')
+legend('Natural Cubic','Clamped')
+title('Spline Absolute Error')
+grid on 
+hold off
+
+sp = [-2.8;-1.4;0;1.4;2.8];
+exactSP = f(sp);
+
+NCsp = double([subs(pNC(1),p, -2.8); subs(pNC(3),p, -1.4); subs(pNC(7),p,0);subs(pNC(10),p,1.4);subs(pNC(12),p,2.8)])
+Clampsp = double([subs(pClamp(1),p, -2.8); subs(pClamp(3),p, -1.4); subs(pClamp(7),p,0);subs(pClamp(10),p,1.4);subs(pClamp(12),p,2.8)])
+
+errNCsp = abs(exactSP-NCsp)
+errClampsp = abs(exactSP-Clampsp)
+
+%========================================================================= 
                                 %q3
 %=========================================================================
-% syms x
-% f = @(y) (2*x^5+x^2/3+x)*(y^3-y/4+1)
-% g(x) = gaussQuad(f,0,3,2)
-% I = gaussQuad(g,0,2,3)
-% double(I)
+syms x % y-direction is going first
+f = @(y) (2*x^5+x^2/3+x)*(y^3-y/4+1)
+g(x) = gaussQuad(f,0,3,2)
+I = gaussQuad(g,0,2,3)
+double(I)
 
 %=========================================================================
                                 %q4
 %=========================================================================
 
-% syms t 
-% f(t) = sqrt(4-3*exp(-t^2));
-% xi = 0;
-% yi = 1;
-% h = .1;
-% steps = 25+1;
-% 
-% [xRK4,yRK4] = RK4(xi,yi,h,steps);
-% [xe,ye] = Euler(xi,yi,h,steps);
-% [xab2,yab2] = AB2(xi,yi,h,steps);
-% 
-% figure (1)
-% hold on 
-% fplot(f)
-% plot(xRK4,yRK4)
-% plot(xe,ye)
-% plot(xab2,yab2)
-% xlim([xi 2.5])
-% grid on 
-% xlabel('t')
-% ylabel('f(t)')
-% title('ODE approximations')
-% legend('Exact','RK4','Euler','AB2')
-% 
-% x = transpose(0:.1:2.5);
-% exact = zeros(steps,1);
-% for i = 1:steps
-%     exact(i,1) = f(x(i,1));
-% end
-% 
-% errRK4 = abs(yRK4-exact);
-% errAB2 = abs(yab2-exact);
-% errE = abs(ye-exact);
-% tab = [x exact yRK4 errRK4 yab2 errAB2 ye errE];
-% figure (2)
-% hold on 
-% plot(xRK4,errRK4)
-% plot(xe,errE)
-% plot(xab2,errAB2)
-% xlim([xi 2.5])
-% grid on 
-% xlabel('t')
-% ylabel('Absolute Error')
-% title('ODE Error')
-% legend('RK4','Euler','AB2')
-% 
-% figure (4)
-% hold on 
-% plot(xRK4,errRK4)
-% xlim([xi 2.5])
-% grid on 
-% xlabel('t')
-% ylabel('Absolute Error')
-% title('RK4 Error')
+syms t 
+f(t) = sqrt(4-3*exp(-t^2));
+xi = 0;
+yi = 1;
+h = .1;
+steps = 25+1;
+
+[xRK4,yRK4] = RK4(xi,yi,h,steps);
+[xe,ye] = Euler(xi,yi,h,steps);
+[xab2,yab2] = AB2(xi,yi,h,steps);
+
+figure (1)
+hold on 
+fplot(f)
+plot(xRK4,yRK4)
+plot(xe,ye)
+plot(xab2,yab2)
+xlim([xi 2.5])
+grid on 
+xlabel('t')
+ylabel('f(t)')
+title('ODE approximations')
+legend('Exact','RK4','Euler','AB2')
+
+x = transpose(0:.1:2.5);
+exact = zeros(steps,1);
+for i = 1:steps
+    exact(i,1) = f(x(i,1));
+end
+
+errRK4 = abs(yRK4-exact);
+errAB2 = abs(yab2-exact);
+errE = abs(ye-exact);
+tab = [x exact yRK4 errRK4 yab2 errAB2 ye errE];
+figure (2)
+hold on 
+plot(xRK4,errRK4)
+plot(xe,errE)
+plot(xab2,errAB2)
+xlim([xi 2.5])
+grid on 
+xlabel('t')
+ylabel('Absolute Error')
+title('ODE Error')
+legend('RK4','Euler','AB2')
+
+figure (4)
+hold on 
+plot(xRK4,errRK4)
+xlim([xi 2.5])
+grid on 
+xlabel('t')
+ylabel('Absolute Error')
+title('RK4 Error')
 
